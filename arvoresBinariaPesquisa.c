@@ -16,7 +16,7 @@ typedef struct arvores
 typedef NO *PONT;
 PONT inicializaArvore(TipoChave chave);
 PONT inserir(TipoChave chave, PONT raiz);
-PONT busca(TipoChave chave);
+PONT busca(TipoChave chave, PONT raiz);
 
 int main()
 {
@@ -53,12 +53,35 @@ PONT inserir(TipoChave chave, PONT raiz)
     {
         return inicializaArvore(chave);
     }
+
     if (chave > raiz->chave)
     {
         raiz->dir = inserir(chave, raiz->dir);
     }
-    if (chave < raiz->chave)
+    else
     {
         raiz->esq = inserir(chave, raiz->esq);
+    }
+}
+
+PONT busca(TipoChave chave, PONT raiz)
+{
+    if (raiz == NULL)
+    {
+        return NULL;
+    }
+
+    if (chave == raiz->chave)
+    {
+        return raiz;
+    }
+
+    if (chave > raiz->chave)
+    {
+        return busca(chave, raiz->dir);
+    }
+    else
+    {
+        return busca(chave, raiz->esq);
     }
 }
