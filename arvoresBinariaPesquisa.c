@@ -35,17 +35,16 @@ int main()
 PONT inicializaArvore(TipoChave chave)
 {
     PONT raiz = (PONT)malloc(sizeof(NO));
+    if (raiz == NULL)
+        return NULL;
+
     raiz->chave = chave;
     raiz->esq = NULL;
     raiz->dir = NULL;
 
-    free(raiz->dir);
-    free(raiz->esq);
-    free(raiz);
-    raiz = NULL;
-
     return raiz;
 }
+
 
 PONT inserir(TipoChave chave, PONT raiz)
 {
