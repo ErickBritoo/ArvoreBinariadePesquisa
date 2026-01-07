@@ -13,10 +13,14 @@ typedef struct arvores
     struct arvores *esq, *dir;
 } NO;
 
+
+// Prototipacoes
 typedef NO *PONT;
 PONT inicializaArvore(TipoChave chave);
 PONT inserir(TipoChave chave, PONT raiz);
 PONT busca(TipoChave chave, PONT raiz);
+bool vazia(PONT raiz);
+void imprime(PONT raiz);
 
 int main()
 {
@@ -24,10 +28,7 @@ int main()
     inserir(40, raiz);
     inserir(70, raiz);
 
-    printf("%i\n", raiz->chave);
-
-    printf("%i\n", raiz->esq->chave);
-    printf("%i\n", raiz->dir->chave);
+    imprime(raiz);
 
     return 0;
 }
@@ -82,5 +83,20 @@ PONT busca(TipoChave chave, PONT raiz)
     else
     {
         return busca(chave, raiz->esq);
+    }
+}
+
+bool vazia (PONT a)
+{
+    return a == NULL;
+}
+
+void imprime (PONT raiz)
+{
+    if (!vazia(raiz))
+    {
+        printf("%i ", raiz->chave);
+        imprime(raiz->esq);
+        imprime(raiz->dir);
     }
 }
